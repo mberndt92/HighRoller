@@ -9,11 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var results = HighRollerResults(results: [])
-    
-    @State private var currentResult: Int? = nil
-    
-    @State private var showingResultHistory = false
+    @StateObject private var viewModel = ViewModel()
     
     var body: some View {
         NavigationView {
@@ -37,18 +33,18 @@ struct ContentView: View {
                 ToolbarItem {
                     Image(systemName: "clock.arrow.circlepath")
                         .onTapGesture {
-                            showingResultHistory = true
+                            viewModel.showingResultHistory = true
                         }
                 }
             }
         }
-        .sheet(isPresented: $showingResultHistory) {
-            ResultHistoryView(results: results)
+        .sheet(isPresented: $viewModel.showingResultHistory) {
+            ResultHistoryView(results: viewModel.results)
         }
     }
     
     private func diceImageName() -> String {
-        guard let currentResult else { return "questionmark.square" }
+        guard let currentResult = viewModel.currentResult else { return "questionmark.square" }
         
         return "die.face.\(currentResult)"
     }
@@ -58,9 +54,9 @@ struct ContentView: View {
         let diceResult = DiceResult(dice: dice, result: dice.roll())
         let rollResult = HighRollerResult(results: [diceResult])
         withAnimation {
-            currentResult = diceResult.result
+            viewModel.currentResult = diceResult.result
         }
-        results.results.append(rollResult)
+        viewModel.results.results.append(rollResult)
     }
 }
 
