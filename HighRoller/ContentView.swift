@@ -48,7 +48,7 @@ struct ContentView: View {
     }
     
     private func diceImageName() -> String {
-        guard let currentResult else { return "questionmark" }
+        guard let currentResult else { return "questionmark.square" }
         
         return "die.face.\(currentResult)"
     }
