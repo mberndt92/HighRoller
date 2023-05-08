@@ -9,15 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var results: [Int] = []
+    @State private var results = HighRollerResults(results: [])
     
-    @State private var currentResult: Int = 1
+    @State private var currentResult: Int? = nil
+    
+    @State private var showingResultHistory = false
     
     var body: some View {
         NavigationView {
             VStack {
                 VStack(spacing: 15) {
-                    Image(systemName: "die.face.\(currentResult)")
+                    Image(systemName: diceImageName())
                         .resizable()
                         .frame(width: 64, height: 64)
                     
@@ -34,16 +36,31 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem {
                     Image(systemName: "clock.arrow.circlepath")
+                        .onTapGesture {
+                            showingResultHistory = true
+                        }
                 }
             }
         }
+        .sheet(isPresented: $showingResultHistory) {
+            ResultHistoryView(results: results)
+        }
+    }
+    
+    private func diceImageName() -> String {
+        guard let currentResult else { return "questionmark" }
+        
+        return "die.face.\(currentResult)"
     }
     
     private func rollDice() {
+        let dice = Dice.six
+        let diceResult = DiceResult(dice: dice, result: dice.roll())
+        let rollResult = HighRollerResult(results: [diceResult])
         withAnimation {
-            currentResult = Int.random(in: 1...6)
+            currentResult = diceResult.result
         }
-        results.append(currentResult)
+        results.results.append(rollResult)
     }
 }
 
