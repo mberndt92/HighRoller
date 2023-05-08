@@ -11,6 +11,8 @@ import SwiftUI
 extension ContentView {
     @MainActor class ViewModel: ObservableObject {
         
+        @State private var feedback = UINotificationFeedbackGenerator()
+        
         @Published var results = HighRollerResults(results: [])
         
         @Published private(set) var dice: [Dice] = [.four, .six, .eight, .ten, .twelve, .twenty, .hundred]
@@ -60,6 +62,7 @@ extension ContentView {
                 currentResult = highRollerResult
             }
             results.results.append(highRollerResult)
+            feedback.notificationOccurred(.success)
             save()
         }
         
@@ -90,6 +93,8 @@ extension ContentView {
         }
         
         func load() {
+            feedback.prepare()
+            
             if FileManager.default.fileExists(atPath: FileManager.documentsDirectory.appending(path: HighRollerResults.saveFileName).path()) {
                 if let loadedData: HighRollerResults = FileManager.default.loadFromDocuments(HighRollerResults.saveFileName) {
                         results = loadedData
