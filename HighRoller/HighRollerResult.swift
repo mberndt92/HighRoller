@@ -31,6 +31,8 @@ extension HighRollerResult {
 struct HighRollerResults: Codable, Identifiable {
     var id = UUID()
     var results: [HighRollerResult]
+    
+    static var saveFileName = "HighRollerResults"
 }
 
 extension HighRollerResults {

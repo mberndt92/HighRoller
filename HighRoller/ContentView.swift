@@ -66,9 +66,12 @@ struct ContentView: View {
         }
         .sheet(isPresented: $viewModel.showingSettings) {
             SettingsView(dices: viewModel.diceConfig, useTint: viewModel.useTint) { dice, useTint in
-                viewModel.dice = dice
-                viewModel.useTint = useTint
+                viewModel.set(dice)
+                viewModel.set(useTint)
             }
+        }
+        .onAppear {
+            viewModel.load()
         }
     }
     
