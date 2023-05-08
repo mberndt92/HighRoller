@@ -16,7 +16,7 @@ struct ResultHistoryView: View {
             VStack {
                 if results.results.isEmpty == false {
                     List {
-                        ForEach(results.results) { result in
+                        ForEach(results.results.reversed()) { result in
                             VStack(alignment: .leading) {
                                 Text("Total Eyes: ") + Text("\(result.totalEyes())")
                                     .font(.headline)
