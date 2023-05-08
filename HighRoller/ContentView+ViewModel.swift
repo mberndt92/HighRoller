@@ -32,6 +32,10 @@ extension ContentView {
             return allDice
         }
         
+        var totalEyes: Int {
+            return currentResult?.totalEyes() ?? 0
+        }
+        
         func diceImageName() -> String {
             guard let currentResult else { return "questionmark.square" }
             

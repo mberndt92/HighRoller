@@ -14,7 +14,16 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                VStack(spacing: 15) {
+                VStack(spacing: 25) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 25)
+                            .fill(.white)
+                            .shadow(radius: 10)
+                            .frame(maxHeight: 64)
+                        
+                        Text("Total Eyes: \(viewModel.totalEyes)")
+                            .font(.largeTitle)
+                    }
                     if let result = viewModel.currentResult {
                         HighRollerResultView(result: result)
                             .frame(maxHeight: viewModel.resultViewHeight())
