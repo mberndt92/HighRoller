@@ -31,10 +31,11 @@ struct ContentView: View {
             }
             .toolbar {
                 ToolbarItem {
-                    Image(systemName: "clock.arrow.circlepath")
-                        .onTapGesture {
-                            viewModel.showingResultHistory = true
-                        }
+                    Button {
+                        viewModel.showingResultHistory = true
+                    } label: {
+                        Image(systemName: "clock.arrow.circlepath")
+                    }
                 }
             }
         }
