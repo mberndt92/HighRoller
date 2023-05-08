@@ -17,7 +17,11 @@ struct ResultHistoryView: View {
                 if results.results.isEmpty == false {
                     List {
                         ForEach(results.results) { result in
-                            Text("\(result.totalEyes())")
+                            VStack(alignment: .leading) {
+                                Text("Total Eyes: ") + Text("\(result.totalEyes())")
+                                    .font(.headline)
+                                HighRollerResultHStackView(result: result, size: 48)       
+                            }
                         }
                     }
                 } else {

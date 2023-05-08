@@ -18,6 +18,7 @@
 		8A8AEC152A089194001FAAB6 /* ContentView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8AEC142A089194001FAAB6 /* ContentView+ViewModel.swift */; };
 		8A8AEC172A08976B001FAAB6 /* HighRollerResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8AEC162A08976B001FAAB6 /* HighRollerResultView.swift */; };
 		8A8AEC192A08BCEA001FAAB6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8AEC182A08BCEA001FAAB6 /* SettingsView.swift */; };
+		8AE91A012A08D33D00BB4211 /* HighRolerResultHStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE91A002A08D33D00BB4211 /* HighRolerResultHStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		8A8AEC142A089194001FAAB6 /* ContentView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView+ViewModel.swift"; sourceTree = "<group>"; };
 		8A8AEC162A08976B001FAAB6 /* HighRollerResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighRollerResultView.swift; sourceTree = "<group>"; };
 		8A8AEC182A08BCEA001FAAB6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		8AE91A002A08D33D00BB4211 /* HighRolerResultHStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighRolerResultHStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				8A8AEC182A08BCEA001FAAB6 /* SettingsView.swift */,
 				8A8AEC142A089194001FAAB6 /* ContentView+ViewModel.swift */,
 				8A8AEC162A08976B001FAAB6 /* HighRollerResultView.swift */,
+				8AE91A002A08D33D00BB4211 /* HighRolerResultHStackView.swift */,
 				8A8AEC0E2A088AF6001FAAB6 /* HighRollerResult.swift */,
 				8A8AEC102A088D7C001FAAB6 /* DiceResult.swift */,
 				8A8AEC0C2A088985001FAAB6 /* ResultHistoryView.swift */,
@@ -160,6 +163,7 @@
 			files = (
 				8A8AEC0F2A088AF6001FAAB6 /* HighRollerResult.swift in Sources */,
 				8A8AEC012A088552001FAAB6 /* ContentView.swift in Sources */,
+				8AE91A012A08D33D00BB4211 /* HighRolerResultHStackView.swift in Sources */,
 				8A8AEBFF2A088552001FAAB6 /* HighRollerApp.swift in Sources */,
 				8A8AEC192A08BCEA001FAAB6 /* SettingsView.swift in Sources */,
 				8A8AEC0D2A088985001FAAB6 /* ResultHistoryView.swift in Sources */,

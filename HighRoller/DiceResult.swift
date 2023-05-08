@@ -63,14 +63,14 @@ struct DiceResult: Codable, Identifiable {
     let useTint: Bool
     
     @ViewBuilder
-    func image() -> some View {
+    func image(font: Font = .title) -> some View {
         ZStack {
             Image(systemName: diceImageName())
                 .resizable()
                 .foregroundColor(dice.tint(custom: useTint))
             if result > 6 {
                 Text("\(result)")
-                    .font(.title)
+                    .font(font)
                     .bold()
             }
         }

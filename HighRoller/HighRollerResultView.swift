@@ -9,18 +9,28 @@ import SwiftUI
 
 struct HighRollerResultView: View {
     
-    let columns = [
+    var columns = [
         GridItem(.adaptive(minimum: 64))
     ]
     
     var result: HighRollerResult
+    var size: Double = 64
+    
+    init(result: HighRollerResult, size: Double = 64) {
+        self.result = result
+        self.size = size
+        
+        columns = [
+            GridItem(.adaptive(minimum: size))
+        ]
+    }
     
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(result.results) { result in
                     result.image()
-                        .frame(width: 64, height: 64)
+                        .frame(width: size, height: size)
                 }
             }
             .padding(.horizontal)
@@ -30,6 +40,10 @@ struct HighRollerResultView: View {
 
 struct HighRollerResultView_Previews: PreviewProvider {
     static var previews: some View {
-        HighRollerResultView(result: HighRollerResult.example)
+        ScrollView {
+            HighRollerResultView(result: HighRollerResult.example)
+            Divider()
+            HighRollerResultView(result: HighRollerResult.example, size: 48)
+        }
     }
 }
