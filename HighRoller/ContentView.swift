@@ -37,7 +37,7 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        viewModel.showingResultHistory = true
+                        viewModel.showingSettings = true
                     } label: {
                         Image(systemName: "gearshape")
                     }
@@ -54,6 +54,11 @@ struct ContentView: View {
         }
         .sheet(isPresented: $viewModel.showingResultHistory) {
             ResultHistoryView(results: viewModel.results)
+        }
+        .sheet(isPresented: $viewModel.showingSettings) {
+            SettingsView(dices: viewModel.diceConfig) { dice in
+                viewModel.dice = dice
+            }
         }
     }
     

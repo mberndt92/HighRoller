@@ -8,14 +8,14 @@
 import Foundation
 import SwiftUI
 
-enum Dice: String, Codable {
-    case four
-    case six
-    case eight
-    case ten
-    case twelve
-    case twenty
-    case hundred
+enum Dice: Int, Codable, CaseIterable {
+    case four = 4
+    case six = 6
+    case eight = 8
+    case ten = 10
+    case twelve = 12
+    case twenty = 20
+    case hundred = 100
     
     func roll() -> Int {
         switch self {

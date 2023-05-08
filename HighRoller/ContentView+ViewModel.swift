@@ -18,6 +18,21 @@ extension ContentView {
         @Published var currentResult: HighRollerResult? = nil
         
         @Published var showingResultHistory = false
+        @Published var showingSettings = false
+        
+        var diceConfig: [Dice: Int] {
+            var allDice: [Dice: Int] = [:]
+            
+            Dice.allCases.forEach { die in
+                allDice[die] = 0
+            }
+            
+            dice.forEach { die in
+                allDice[die]! += 1
+            }
+            
+            return allDice
+        }
         
         func diceImageName() -> String {
             guard let currentResult else { return "questionmark.square" }
