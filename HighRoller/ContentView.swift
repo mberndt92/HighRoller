@@ -15,7 +15,7 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 VStack(spacing: 15) {
-                    Image(systemName: diceImageName())
+                    Image(systemName: viewModel.diceImageName())
                         .resizable()
                         .frame(width: 64, height: 64)
                     
@@ -43,20 +43,8 @@ struct ContentView: View {
         }
     }
     
-    private func diceImageName() -> String {
-        guard let currentResult = viewModel.currentResult else { return "questionmark.square" }
-        
-        return "die.face.\(currentResult)"
-    }
-    
     private func rollDice() {
-        let dice = Dice.six
-        let diceResult = DiceResult(dice: dice, result: dice.roll())
-        let rollResult = HighRollerResult(results: [diceResult])
-        withAnimation {
-            viewModel.currentResult = diceResult.result
-        }
-        viewModel.results.results.append(rollResult)
+        viewModel.rollDice()
     }
 }
 

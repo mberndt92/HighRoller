@@ -17,14 +17,21 @@ extension ContentView {
         
         @Published var showingResultHistory = false
         
-//        @Published var contacts: [Contact] = []
-//
-//        // Image Picker related variables
-//        @Published var image: Image?
-//        @Published var showingImagePicker = false
-//        @Published var inputImage: UIImage?
-//
-//        @Published var showingAddContactDialog = false
+        func diceImageName() -> String {
+            guard let currentResult else { return "questionmark.square" }
+            
+            return "die.face.\(currentResult)"
+        }
+        
+        func rollDice() {
+            let dice = Dice.six
+            let diceResult = DiceResult(dice: dice, result: dice.roll())
+            let rollResult = HighRollerResult(results: [diceResult])
+            withAnimation {
+                currentResult = diceResult.result
+            }
+            results.results.append(rollResult)
+        }
         
     }
 }
