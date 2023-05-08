@@ -13,7 +13,9 @@ extension ContentView {
         
         @Published var results = HighRollerResults(results: [])
         
-        @Published var currentResult: Int? = nil
+        @Published var dice: [Dice] = [.four, .six, .eight, .ten, .twelve, .twenty, .hundred]
+        
+        @Published var currentResult: HighRollerResult? = nil
         
         @Published var showingResultHistory = false
         
@@ -24,13 +26,29 @@ extension ContentView {
         }
         
         func rollDice() {
-            let dice = Dice.six
-            let diceResult = DiceResult(dice: dice, result: dice.roll())
-            let rollResult = HighRollerResult(results: [diceResult])
-            withAnimation {
-                currentResult = diceResult.result
+            var rolls: [DiceResult] = []
+            
+            for d in dice {
+                let roll = DiceResult(dice: d, result: d.roll())
+                rolls.append(roll)
             }
-            results.results.append(rollResult)
+            
+            let highRollerResult = HighRollerResult(results: rolls)
+            
+            withAnimation {
+                currentResult = highRollerResult
+            }
+            results.results.append(highRollerResult)
+        }
+        
+        func resultViewHeight() -> CGFloat {
+            if let currentResult {
+                let minRows = currentResult.results.count / 4
+                let addExtraRow = currentResult.results.count % 4 > 0
+                return Double(minRows + (addExtraRow ? 1 : 0)) * 80
+            } else {
+                return 0
+            }
         }
         
     }

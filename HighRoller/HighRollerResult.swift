@@ -18,7 +18,13 @@ struct HighRollerResult: Codable, Identifiable {
 
 extension HighRollerResult {
     static var example: HighRollerResult {
-        return HighRollerResult(results: Array(repeating: DiceResult.example, count: 5))
+        return HighRollerResult(results: [
+            DiceResult.example,
+            DiceResult.example,
+            DiceResult.example,
+            DiceResult.example,
+            DiceResult.example
+        ])
     }
 }
 

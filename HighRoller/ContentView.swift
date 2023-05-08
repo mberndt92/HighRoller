@@ -15,9 +15,14 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 VStack(spacing: 15) {
-                    Image(systemName: viewModel.diceImageName())
-                        .resizable()
-                        .frame(width: 64, height: 64)
+                    if let result = viewModel.currentResult {
+                        HighRollerResultView(result: result)
+                            .frame(maxHeight: viewModel.resultViewHeight())
+                    } else {
+                        Image(systemName: viewModel.diceImageName())
+                            .resizable()
+                            .frame(width: 64, height: 64)
+                    }
                     
                     Button("Roll dice", action: rollDice)
                         .padding()
@@ -30,6 +35,14 @@ struct ContentView: View {
                 .padding()
             }
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        viewModel.showingResultHistory = true
+                    } label: {
+                        Image(systemName: "gearshape")
+                    }
+                }
+                
                 ToolbarItem {
                     Button {
                         viewModel.showingResultHistory = true

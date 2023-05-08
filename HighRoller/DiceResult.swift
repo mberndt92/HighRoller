@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum Dice: String, Codable {
     case four
@@ -33,6 +34,25 @@ struct DiceResult: Codable, Identifiable {
     var id = UUID()
     let dice: Dice
     let result: Int
+    
+    @ViewBuilder
+    func image() -> some View {
+        ZStack {
+            Image(systemName: diceImageName())
+                .resizable()
+            if result > 6 {
+                Text("\(result)")
+                    .font(.title)
+                    .bold()
+            }
+        }
+    }
+    
+    private func diceImageName() -> String {
+        guard result <= 6 else { return "square" }
+        
+        return "die.face.\(result)"
+    }
 }
 
 extension DiceResult {
