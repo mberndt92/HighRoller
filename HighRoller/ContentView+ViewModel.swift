@@ -20,12 +20,10 @@ extension ContentView {
         @Published var showingResultHistory = false
         @Published var showingSettings = false
         
+        @Published var useTint = false
+        
         var diceConfig: [Dice: Int] {
-            var allDice: [Dice: Int] = [:]
-            
-            Dice.allCases.forEach { die in
-                allDice[die] = 0
-            }
+            var allDice: [Dice: Int] = Dice.emptyDictionary
             
             dice.forEach { die in
                 allDice[die]! += 1
@@ -44,7 +42,7 @@ extension ContentView {
             var rolls: [DiceResult] = []
             
             for d in dice {
-                let roll = DiceResult(dice: d, result: d.roll())
+                let roll = DiceResult(dice: d, result: d.roll(), useTint: useTint)
                 rolls.append(roll)
             }
             

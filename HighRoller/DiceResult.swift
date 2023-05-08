@@ -17,6 +17,32 @@ enum Dice: Int, Codable, CaseIterable {
     case twenty = 20
     case hundred = 100
     
+    static var emptyDictionary: [Dice: Int] {
+        return [
+            .four: 0,
+            .six: 0,
+            .eight: 0,
+            .ten: 0,
+            .twelve: 0,
+            .twenty: 0,
+            .hundred: 0
+        ]
+    }
+    
+    func tint(custom: Bool) -> Color {
+        guard custom else { return .black }
+        
+        switch self {
+        case .four: return .red
+        case .six: return .black
+        case .eight: return .blue
+        case .ten: return .green
+        case .twelve: return .yellow
+        case .twenty: return .brown
+        case .hundred: return .cyan
+        }
+    }
+    
     func roll() -> Int {
         switch self {
         case .four: return Int.random(in: 1...4)
@@ -34,12 +60,14 @@ struct DiceResult: Codable, Identifiable {
     var id = UUID()
     let dice: Dice
     let result: Int
+    let useTint: Bool
     
     @ViewBuilder
     func image() -> some View {
         ZStack {
             Image(systemName: diceImageName())
                 .resizable()
+                .foregroundColor(dice.tint(custom: useTint))
             if result > 6 {
                 Text("\(result)")
                     .font(.title)
@@ -57,6 +85,6 @@ struct DiceResult: Codable, Identifiable {
 
 extension DiceResult {
     static var example: DiceResult {
-        return DiceResult(dice: .six, result: Dice.six.roll())
+        return DiceResult(dice: .six, result: Dice.six.roll(), useTint: false)
     }
 }

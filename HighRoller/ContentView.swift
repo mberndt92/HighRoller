@@ -56,8 +56,9 @@ struct ContentView: View {
             ResultHistoryView(results: viewModel.results)
         }
         .sheet(isPresented: $viewModel.showingSettings) {
-            SettingsView(dices: viewModel.diceConfig) { dice in
+            SettingsView(dices: viewModel.diceConfig, useTint: viewModel.useTint) { dice, useTint in
                 viewModel.dice = dice
+                viewModel.useTint = useTint
             }
         }
     }
